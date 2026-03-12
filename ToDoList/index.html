@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Heading</title>
+    <style>
+      body {
+        background-color: gray;
+        display: flex;
+        height: 100vh;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #form {
+        background-color: rgba(0, 0, 0, 0.7);
+        display: flex;
+        flex-direction: column;
+        height: 50vh;
+        width: 50vw;
+        padding: 25px;
+        gap: 5px;
+        border-radius: 2%;
+        justify-content: space-between;
+      }
+
+      #input {
+        padding: 10px;
+        height: 25%;
+        display: flex;
+      }
+
+      .btn {
+        width: 15%;
+        align-self: flex-end;
+        padding: 10px;
+        border-radius: 25%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <form id="form">
+        <input type="text" id="input" name="ib" />
+        <button type="submit" class="btn">Add</button>
+      </form>
+      <ul id="list"></ul>
+    </div>
+    <script>
+      let form = document.querySelector("#form");
+      let input = document.querySelector("#input");
+      let list = document.querySelector("#list");
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        let text = input.value;
+        if (text.trim() !== "") {
+          let li = document.createElement("li");
+          li.textContent = text;
+          list.append(li);
+          input.value = "";
+        }
+      });
+    </script>
+  </body>
+</html>

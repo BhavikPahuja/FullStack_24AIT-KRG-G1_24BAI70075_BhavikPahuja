@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style> 
+        form {
+            display: flex;
+            gap: 10px;
+        }
+        ul {
+            margin-top: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 30px;
+            width: 50%;
+            margin: 40px auto;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        input[type="text"] {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            outline: none;
+            font-size: 14px;
+        }
+        input[type="text"]:focus {
+            border-color: #4a90d9;
+        }
+        button {
+            cursor: pointer;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #fff;
+            background: #4a90d9;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #357abd;
+        }
+        #remove-btn {
+            background: #e74c3c;
+        }
+        #remove-btn:hover {
+            background: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <form>
+            <input type="text" placeholder="Name">
+            <button type="submit">Add Item</button>
+            <button type="button" id="remove-btn">Remove Last Item</button>
+        </form>
+        <ul id="item-list">
+        </ul>
+    </div>
+    <script>
+        const form = document.querySelector('form');
+        const input = document.querySelector('input');
+        const ul = document.querySelector('ul');
+        const removeBtn = document.getElementById('remove-btn');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (input.value.trim() === '') {
+                alert('Please enter a value!');
+                return;
+            }
+            const li = document.createElement('li');
+            li.textContent = input.value.trim();
+            ul.appendChild(li);
+            input.value = '';
+        });
+
+        removeBtn.addEventListener('click', () => {
+            if (ul.lastElementChild) {
+                ul.removeChild(ul.lastElementChild);
+            } else {
+                alert('No items to remove!');
+            }
+        });
+    </script>
+</body>
+</html>
